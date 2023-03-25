@@ -1,0 +1,96 @@
+.spinner {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.spinner div {
+  width: 10px;
+  height: 10px;
+  background-color: #ffffff;
+  border-radius: 100%;
+  position: absolute;
+  animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+  top: 0;
+  left: 0;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  top: 0;
+  left: 15px;
+  animation-delay: -0.16s;
+}
+
+.spinner .bounce3 {
+  top: 0;
+  right: 0;
+}
+
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  margin: 25px;
+  border-radius: 15px;
+}
+
+.refresh {
+  
+  
+  
+}
+
+
+.refresh-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 70px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.refreshbtn {
+  width: 50px;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+.refresh-button-container {
+  overflow-x: hidden;
+}
+
+/* ul, ol {
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+li {
+  text-align: center;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  
+} */

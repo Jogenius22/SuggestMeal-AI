@@ -1,0 +1,32 @@
+/* .Form {
+  max-width: 1400px;
+  
+  justify-content: center;
+}
+
+.submit-container {
+  text-align: center;
+}  */
+.center {
+  display: flex;
+  justify-content: center;
+  margin: 25px;
+  border-radius: 15px;
+}
+.refresh-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 70px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.margin-b {
+  margin-bottom: 25px;
+}
