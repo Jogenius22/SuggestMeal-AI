@@ -6,7 +6,7 @@ import RefreshButton from "./RefreshButton";
 
 const RLayout = () => {
   return (
-    <div className="container mt-4">
+    <div className="container col-md-4 col-12">
       <div className="row">
         <div className=" ">
           <MyForm />

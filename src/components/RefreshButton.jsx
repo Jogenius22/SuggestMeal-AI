@@ -6,8 +6,10 @@ import "./RefreshButton.css"
 import refresh from "../assest/refresh.svg"
 
 
+
+
 const configuration = new Configuration({
-  apiKey: "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"
+  apiKey: "sk-iM25gxxxx6pIJMuWzaW3T3BlbkFJ2ChMBug2PdyG6JW5mIp5"
 });
 
 const openai = new OpenAIApi(configuration);
@@ -37,8 +39,8 @@ function RefreshButton({ promptString, refreshKey }) {
 
       const searchTerm = response["data"]["choices"][0]["message"]["content"].match(/<h2>(.*?)<\/h2>|<p>(.*?)<\/p>/);
       if (searchTerm) {
-        const API_KEY = 'AIzaSyD9Pv32lZcs2sJwdwr08pX1NdSPTkJOkgQ';
-        const SEARCH_ENGINE_ID = '53f6af5cd93114e8e';
+        const API_KEY = 'AIzaSyD9Pv32lZcs2sJwdwr08pX1NdSPTkJOkgQ'
+        const SEARCH_ENGINE_ID = '53f6af5cd93114e8e'
 
         const responseImage = await axios.get(
           `https://www.googleapis.com/customsearch/v1?key=${API_KEY}&cx=${SEARCH_ENGINE_ID}&q=${searchTerm[1] || searchTerm[2]}&searchType=image`
@@ -58,12 +60,12 @@ function RefreshButton({ promptString, refreshKey }) {
     const h3Index = parsedHtml.findIndex(element => element.type === 'h3');
 
     if (h3Index !== -1 && imageUrl) {
-  const defaultStyle = { maxWidth: '500px', maxHeight: '400px' };
-  const mediaQueryStyle = { maxWidth: '400px', maxHeight: '300px' };
+      const defaultStyle = { maxWidth: '500px', maxHeight: '400px' };
+      const mediaQueryStyle = { maxWidth: '400px', maxHeight: '300px' };
 
-  parsedHtml.splice(h3Index, 0, <img src={imageUrl} alt="search result" 
-    style={Object.assign({}, defaultStyle, { "@media screen and (min-width: 768px)": mediaQueryStyle })} />);
-}
+      parsedHtml.splice(h3Index, 0, <img src={imageUrl} alt="search result" 
+        style={Object.assign({}, defaultStyle, { "@media screen and (minWidth: 768px)": mediaQueryStyle })} />);
+    }
 
     return parsedHtml;
   });

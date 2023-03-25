@@ -52,6 +52,17 @@ const MyForm = () => {
     setFormData({ ...formData, flavor: updatedRestrictions });
   };
 
+  const handleCUCheckboxChange = (e) => {
+    const { name } = e.target;
+    let updatedRestrictions = [...formData.cuisine];
+    if (updatedRestrictions.includes(name)) {
+      updatedRestrictions = updatedRestrictions.filter((item) => item !== name);
+    } else {
+      updatedRestrictions.push(name);
+    }
+    setFormData({ ...formData, cuisine: updatedRestrictions });
+  };
+
   const handleSpecificationChange = (index, e) => {
     const { value } = e.target;
     const newSpecifications = [...formData.specifications];
@@ -79,16 +90,17 @@ const MyForm = () => {
     setShowSpecifications(!showSpecifications);
   };
 
-  const [showOtherCuisine, setShowOtherCuisine] = useState(false);
-  const handleCToggleChange = () => {
-    setShowOtherCuisine(!showOtherCuisine);
-  };
+  
 
   const [showTimePreparation, setShowTimePreparation] = useState(false);
   const handleToggleTChange = () => {
     setShowTimePreparation(!showTimePreparation);
   };
 
+  const [showCuisine, setshowCuisine] = useState(false);
+  const handleCUToggleChange = () => {
+    setshowCuisine(!showCuisine);
+  }
 
 
   const [showTimeDiv, setShowTimeDiv] = useState(false);
@@ -118,27 +130,29 @@ const MyForm = () => {
   const [showFlavorDiv, setShowFlavorDiv] = useState(false)
   const [MealTemp, setMealTemp] = useState(false);
   const [cuisineOptions, setCuisineOptions] = useState([
-    'Italian',
-    'Mexican',
-    'Chinese',
-    'Indian',
-    'Japanese',
-    'Greek',
-    'Thai',
-    'French',
-    'Spanish',
-    'Mediterranean',
-    'Middle Eastern',
-    'Korean',
-    'American',
-    'Cajun/Creole',
-    'Vietnamese',
-    'Ethiopian',
-    'Caribbean',
-    'Brazilian',
-    'Peruvian',
-    'German',
+    "Italian",
+    "Mexican",
+    "Chinese",
+    "Indian",
+    "Japanese",
+    "Greek",
+    "Thai",
+    "French",
+    "Spanish",
+    "Mediterranean",
+    "Middle Eastern",
+    "Korean",
+    "American",
+    "Cajun/Creole",
+    "Vietnamese",
+    "Ethiopian",
+    "Caribbean",
+    "Brazilian",
+    "Peruvian",
+    "German",
+    "Other"
   ]);
+
 
 
 
@@ -175,7 +189,7 @@ const MyForm = () => {
     <Form onSubmit={handleSubmit} className="Form">
       <Container>
         <Row>
-          <Col md={6} xs={12}>
+          <Col md={12} xs={12}>
             <div className="input-container">
               <div className="toggle-container">
                 <Form.Check
@@ -225,7 +239,7 @@ const MyForm = () => {
               )}
             </div>
           </Col>
-          <Col md={6} xs={12}>
+          <Col md={12} xs={12}>
             <div className="input-container">
               <div className="toggle-container">
                 <Form.Check
@@ -322,7 +336,7 @@ const MyForm = () => {
           </Col>
         </Row>
         <Row>
-          <Col md={6} xs={12}>
+          <Col md={12} xs={12}>
             <div className="input-container">
               <div className="toggle-container">
                 <Form.Check
@@ -372,7 +386,7 @@ const MyForm = () => {
               )}
             </div>
           </Col>
-          <Col md={6} xs={12}>
+          <Col md={12} xs={12}>
             <div className="input-container">
               <div className="toggle-container">
                 <Form.Check
@@ -408,7 +422,7 @@ const MyForm = () => {
           </Col>
         </Row>
         <Row>
-          <Col md={6} xs={12}>
+          <Col md={12} xs={12}>
             <div className="input-container">
               <div className="toggle-container">
                 <Form.Check
@@ -503,7 +517,7 @@ const MyForm = () => {
               )}
             </div>
           </Col>
-          <Col md={6} xs={12}>
+          <Col md={12} xs={12}>
             <div className="input-container">
               <div className="toggle-container">
                 <Form.Check
@@ -539,7 +553,7 @@ const MyForm = () => {
           </Col>
         </Row>
         <Row>
-          <Col md={6} xs={12}>
+          <Col md={12} xs={12}>
             <div className="input-container">
               <div className="toggle-container">
                 <Form.Check
@@ -565,50 +579,59 @@ const MyForm = () => {
               )}
             </div>
           </Col>
-          <Col md={6} xs={12}>
-            <div className="input-container">
+          
+          <Col md={12} xs={12}>
+            <div>
               <div className="toggle-container">
                 <Form.Check
                   type="switch"
                   id="cuisine-switch"
                   label="What cuisine are you in the mood for?"
-                  onChange={handleCToggleChange}
+                  onChange={handleCUToggleChange}
                 />
               </div>
-              {showOtherCuisine ? (
-                <Form.Group controlId="otherCuisine">
-                  <Form.Label>Other: </Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="otherCuisine"
-                    value={formData.otherCuisine}
-                    onChange={handleInputChange}
-                  />
-                </Form.Group>
-              ) : (
-                <div className="input-div">
-                  <Form.Group controlId="cuisine">
-                    <Form.Control
-                      as="select"
-                      name="cuisine"
-                      value={formData.cuisine}
-                      onChange={handleInputChange}
-                    >
-                      <option value="">Select cuisine</option>
-                      {cuisineOptions.map((option, index) => (
-                        <option key={index} value={option}>
-                          {option}
-                        </option>
-                      ))}
-                    </Form.Control>
-                  </Form.Group>
-                </div>
-              )}
-            </div>
-          </Col>
+              {showCuisine && (
+                <div className="input-container">
+                  <div className="input-div">
+                    <Form.Group controlId="cuisine">
+                      <Form.Control
+                        as="select"
+                        onChange={handleInputChange}
+                        value={formData.cuisine}
+                        name="cuisine"
+                      >
+                        <option value="">Select cuisine</option>
+                        {cuisineOptions.map((cuisineOption, index) => (
+                          <option key={index} value={cuisineOption}>
+                            {cuisineOption}
+                          </option>
+                        ))}
+                      </Form.Control>
+                    </Form.Group>
+                    {formData.cuisine === "Other" && (
+            <Form.Group controlId="other-cuisine">
+              <Form.Control
+                type="text"
+                placeholder="Enter other cuisine"
+                onChange={handleInputChange}
+                value={formData.otherCuisine}
+                name="otherCuisine"
+              />
+            </Form.Group>
+          )}
+        </div>
+      </div>
+    )}
+  </div>
+</Col>
+
+
+
+
+
         </Row>
         <Row>
-          <Col md={6} xs={12}>
+          <Col md={12} xs={12}>
             <div>
               <div className="toggle-container">
                 <Form.Check
@@ -642,7 +665,7 @@ const MyForm = () => {
               )}
             </div>
           </Col>
-          <Col md={6} xs={12}>
+          <Col md={12} xs={12}>
             <div className="input-container">
               <div className="toggle-container">
                 <Form.Check
