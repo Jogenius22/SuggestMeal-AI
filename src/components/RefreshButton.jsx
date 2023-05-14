@@ -5,9 +5,6 @@ import parse from "html-react-parser";
 import "./RefreshButton.css"
 import refresh from "../assest/refresh.svg"
 
-
-
-
 const configuration = new Configuration({
   apiKey: process.env.REACT_APP_OPENAI_API_KEY,
 });
@@ -39,8 +36,8 @@ function RefreshButton({ promptString, refreshKey }) {
 
       const searchTerm = response["data"]["choices"][0]["message"]["content"].match(/<h2>(.*?)<\/h2>|<p>(.*?)<\/p>/);
       if (searchTerm) {
-        const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY,
-        const SEARCH_ENGINE_ID = process.env.REACT_APP_SEARCH_API_KEY,
+        const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
+        const SEARCH_ENGINE_ID = process.env.REACT_APP_SEARCH_API_KEY;
 
         const responseImage = await axios.get(
           `https://www.googleapis.com/customsearch/v1?key=${API_KEY}&cx=${SEARCH_ENGINE_ID}&q=${searchTerm[1] || searchTerm[2]}&searchType=image`
@@ -92,4 +89,4 @@ function RefreshButton({ promptString, refreshKey }) {
   )
 };
 
-export default RefreshButton;
+export default RefreshButton
