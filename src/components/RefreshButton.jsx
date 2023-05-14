@@ -9,7 +9,7 @@ import refresh from "../assest/refresh.svg"
 
 
 const configuration = new Configuration({
-  apiKey: "sk-iM25gxxxx6pIJMuWzaW3T3BlbkFJ2ChMBug2PdyG6JW5mIp5"
+  apiKey: process.env.REACT_APP_OPENAI_API_KEY,
 });
 
 const openai = new OpenAIApi(configuration);
@@ -39,8 +39,8 @@ function RefreshButton({ promptString, refreshKey }) {
 
       const searchTerm = response["data"]["choices"][0]["message"]["content"].match(/<h2>(.*?)<\/h2>|<p>(.*?)<\/p>/);
       if (searchTerm) {
-        const API_KEY = 'AIzaSyD9Pv32lZcs2sJwdwr08pX1NdSPTkJOkgQ'
-        const SEARCH_ENGINE_ID = '53f6af5cd93114e8e'
+        const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY,
+        const SEARCH_ENGINE_ID = process.env.REACT_APP_SEARCH_API_KEY,
 
         const responseImage = await axios.get(
           `https://www.googleapis.com/customsearch/v1?key=${API_KEY}&cx=${SEARCH_ENGINE_ID}&q=${searchTerm[1] || searchTerm[2]}&searchType=image`
